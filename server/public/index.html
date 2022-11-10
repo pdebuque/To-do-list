@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.6.1.js"></script>
+    <script src="client.js"></script>
+    <title>FULL STACK TO-DO</title>
+</head>
+
+<body>
+    <h1>full-stack to-do list</h1>
+    <section id="task-input-container">
+        create a task:
+        <div class="task-input">
+            task name:
+            <input type="text" id="task-name-input">
+        </div>
+        <div class="task-input">
+            importance (1-5):
+            <input type="number" id="importance-input">
+        </div>
+        <div class="task-input">
+            due date:
+            <input type="date" id="date-input">
+        </div>
+        <div class="task-input">
+            notes:
+            <input type="textarea" id="notes-input">
+        </div>
+        <button id="submit-task-btn">submit</button>
+    </section>
+    <section id="task-display"></section>
+</body>
+
+</html>
