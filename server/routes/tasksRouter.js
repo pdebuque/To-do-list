@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
         })
 })
 
-router.put('/', (req, res) => {
+router.post('/', (req, res) => {
     const newTask = req.body;
     const queryText = `INSERT INTO tasks ("task_name", "importance", "due_date", "done", "notes")
     VALUES ($1, $2, $3, false, $4)`
@@ -28,6 +28,34 @@ router.put('/', (req, res) => {
         })
         .catch((err) => {
             console.log('could not post task ', err)
+            res.sendStatus(500)
+        })
+})
+
+
+router.put('/toggle/:id', (req, res) => {
+    const queryText = `UPDATE tasks SET done = NOT done WHERE id = $1`;
+    pool.query(queryText, [req.params.id])
+        .then(() => {
+            console.log('successfully toggled done')
+            res.sendStatus(202)
+        })
+        .catch((err) => {
+            console.log('could not update ', err)
+            res.sendStatus(500)
+        })
+})
+
+
+router.delete('/:id', (req, res) => {
+    const queryText = `DELETE FROM tasks WHERE id = $1`;
+    pool.query(queryText, [req.params.id])
+        .then(() => {
+            console.log('delete successful');
+            res.sendStatus(202)
+        })
+        .catch((err) => {
+            console.log('could not delete', err)
             res.sendStatus(500)
         })
 })
