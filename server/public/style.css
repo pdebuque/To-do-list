@@ -49,6 +49,12 @@ select {
     margin: auto;
 }
 
+.task-display-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .task-container {
     display: flex;
     flex-direction: column;
@@ -65,6 +71,7 @@ select {
     justify-content: space-between;
 }
 
+
 .done-false {
     border-left: 10px solid red;
 }
@@ -75,12 +82,12 @@ select {
 
 .importance {
     font-size: .9em;
-
 }
 
 .task-name {
     display: inline-block;
     margin-left: 10px;
+    margin-bottom: 0;
 }
 
 .task-due-date {
