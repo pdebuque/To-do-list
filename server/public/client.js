@@ -63,8 +63,9 @@ function toggleDone() {
 
 function deleteTask() {
     const id = $(this).data('id');
+    const name = $(this).data('name');
     Swal.fire({
-        title: `Are you sure you want to delete ${id}?`,
+        title: `Are you sure you want to delete '${name}'?`,
         showCancelButton: true,
         confirmButtonText: 'Delete',
     }).then((result) => {
@@ -121,7 +122,7 @@ function renderDisplay(array) {
                     <div>${task.notes}</div>
                 </div>
                 <div class="task-footer">
-                    <button data-id = "${task.id}" class="btn ${task.done ? "btn-danger" : "btn-success"} mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
+                    <button data-id = "${task.id}" class="btn ${task.done ? "btn-danger" : "btn-success"} mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-name = "${task.task_name}" data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
                 </div> 
             </div>
         `)
