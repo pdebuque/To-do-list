@@ -47,4 +47,18 @@ router.put('/toggle/:id', (req, res) => {
 })
 
 
+router.delete('/:id', (req, res) => {
+    const queryText = `DELETE FROM tasks WHERE id = $1`;
+    pool.query(queryText, [req.params.id])
+        .then(() => {
+            console.log('delete successful');
+            res.sendStatus(202)
+        })
+        .catch((err) => {
+            console.log('could not delete', err)
+            res.sendStatus(500)
+        })
+})
+
+
 module.exports = router;

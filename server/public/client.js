@@ -41,7 +41,9 @@ function getTasks() {
         url: '/tasks'
     }).then((res) => {
         renderDisplay(res)
-    }).catch('could not get tasks ', err)
+    }).catch((err) => {
+        console.log('could not get tasks ', err)
+    })
 };
 
 function toggleDone() {
@@ -60,7 +62,16 @@ function toggleDone() {
 
 
 function deleteTask() {
+    const id = $(this).data('id');
 
+    $.ajax({
+        type: 'DELETE',
+        url: `/tasks/${id}`
+    }).then(() => {
+        getTasks();
+    }).catch((err) => {
+        console.log('could not delete', err)
+    })
 }
 
 
