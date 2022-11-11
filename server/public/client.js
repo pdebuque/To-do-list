@@ -82,13 +82,17 @@ function deleteTask() {
 
 // ------------------------------------------
 
+const badgeArray = [null, "bg-danger", "bg-warning", "bg-secondary"] // streamlines selection of badge type on rendering
+
 function renderDisplay(array) {
     $('#task-display').empty();
     for (let task of array) {
         $('#task-display').append(`
             <div class="task-container done-${task.done}">
                 <div class = "task-header">
-                    <span class = "task-importance importance-${task.importance}">${task.importance}</span><h3 class="task-name">${task.task_name}</h3> <span class="task-due-date">due: ${task.to_char}</span>
+                    <span class = "badge rounded-pill ${badgeArray[task.importance]}">${task.importance}</span>
+                    <h3 class="task-name">${task.task_name}</h3> 
+                    <span class="task-due-date">due: ${task.to_char}</span>
                 </div>
                 <div class="task-notes"> 
                     ${task.notes}
