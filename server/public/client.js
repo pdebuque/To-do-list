@@ -7,9 +7,8 @@ function onReady() {
 
 function addClickListeners() {
     $('#submit-task-btn').on('click', addTask);
-    $('#task-display').on('click', '.mark-done-btn', toggleDone);
-    $('#task-display').on('click', '.delete-task-btn', deleteTask);
-    $('#task-complete-display').on('click', '.mark-done-btn', toggleDone)
+    $('#all-content').on('click', '.mark-done-btn', toggleDone);
+    $('#all-content').on('click', '.delete-task-btn', deleteTask);
 }
 
 function addTask() {
@@ -64,14 +63,24 @@ function toggleDone() {
 
 function deleteTask() {
     const id = $(this).data('id');
-
-    $.ajax({
-        type: 'DELETE',
-        url: `/tasks/${id}`
-    }).then(() => {
-        getTasks();
-    }).catch((err) => {
-        console.log('could not delete', err)
+    const name = $(this).data('name');
+    Swal.fire({
+        title: `Are you sure you want to delete '${name}'?`,
+        showCancelButton: true,
+        confirmButtonText: 'Delete',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: 'DELETE',
+                url: `/tasks/${id}`
+            }).then(() => {
+                getTasks();
+            }).catch((err) => {
+                console.log('could not delete', err)
+            })
+        } else if (result.isDenied) {
+            console.log('delete canceled');
+        }
     })
 }
 
@@ -113,7 +122,7 @@ function renderDisplay(array) {
                     <div>${task.notes}</div>
                 </div>
                 <div class="task-footer">
-                    <button data-id = "${task.id}" class="btn ${task.done ? "btn-danger" : "btn-success"} mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
+                    <button data-id = "${task.id}" class="btn ${task.done ? "btn-danger" : "btn-success"} mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-name = "${task.task_name}" data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
                 </div> 
             </div>
         `)
