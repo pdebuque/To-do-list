@@ -90,12 +90,15 @@ function renderDisplay(array) {
         $('#task-display').append(`
             <div class="task-container done-${task.done}">
                 <div class = "task-header">
-                    <span class = "badge rounded-pill ${badgeArray[task.importance]}">${task.importance}</span>
-                    <h3 class="task-name">${task.task_name}</h3> 
+                    <div class="imp-and-name"> 
+                        <span class = "importance badge rounded-pill ${badgeArray[task.importance]}">${task.importance}</span>
+                        <h3 class="task-name">${task.task_name}</h3> 
+                    </div>
                     <span class="task-due-date">due: ${task.to_char}</span>
                 </div>
                 <div class="task-notes"> 
-                    ${task.notes}
+                    <div class="notes-spacer"></div>
+                    <div>${task.notes}</div>
                 </div>
                 <div class="task-footer">
                     <button data-id = "${task.id}" class="btn ${task.done ? "btn-danger" : "btn-success"} mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>

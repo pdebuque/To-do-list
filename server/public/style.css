@@ -15,8 +15,10 @@ h1 {
     width: 100%
 }
 
-
-
+/* -------------- inputs ------------------- */
+#task-input-container {
+    padding: 20px;
+}
 
 
 
@@ -28,6 +30,11 @@ h1 {
 
 
 /* -------------- unfinished -------------- */
+
+#task-display-container {
+    padding: 20px;
+}
+
 
 #task-display {
     margin: auto;
@@ -41,6 +48,12 @@ h1 {
     margin: 2px;
 }
 
+.task-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .done-false {
     border-left: 4px solid red;
 }
@@ -49,17 +62,27 @@ h1 {
     border-left: 4px solid green;
 }
 
-.task-importance {
-    margin-right: 10px;
+.importance {
+    font-size: .9em;
+
 }
 
 .task-name {
     display: inline-block;
+    margin-left: 10px;
 }
 
 .task-due-date {
     display: inline-block;
     text-align: right;
+}
+
+.task-notes {
+    display: flex;
+}
+
+.notes-spacer {
+    width: 40px;
 }
 
 .task-footer {
@@ -68,3 +91,7 @@ h1 {
 
 
 /* --------------- finished --------------- */
+
+#tasks-complete {
+    padding: 20px;
+}
