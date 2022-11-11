@@ -1,0 +1,70 @@
+body {
+    margin: 0;
+}
+
+h1 {
+    font-family: 'Fraunces', serif;
+    margin: 0;
+    padding: 40px;
+    text-align: center;
+    background-color: darkblue;
+    color: #ffffff;
+}
+
+#all-content {
+    width: 100%
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------- unfinished -------------- */
+
+#task-display {
+    margin: auto;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: column;
+    background: blanchedalmond;
+    padding: 10px;
+    margin: 2px;
+}
+
+.done-false {
+    border-left: 4px solid red;
+}
+
+.done-true {
+    border-left: 4px solid green;
+}
+
+.task-importance {
+    margin-right: 10px;
+}
+
+.task-name {
+    display: inline-block;
+}
+
+.task-due-date {
+    display: inline-block;
+    text-align: right;
+}
+
+.task-footer {
+    text-align: right;
+}
+
+
+/* --------------- finished --------------- */

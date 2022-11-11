@@ -1,4 +1,4 @@
-const { query } = require('express');
+// const { query } = require('express');
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
@@ -6,10 +6,12 @@ const pool = require('../modules/pool');
 //GET
 // get all rows from the database
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM tasks`;
+    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks 
+                        `;
     pool.query(queryText)
         .then((result) => {
-            console.log('successful get request')
+            console.log('successful get request');
+            console.log(result.rows)
             res.send(result.rows);
         })
         .catch((err) => {

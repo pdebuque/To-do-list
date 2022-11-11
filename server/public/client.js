@@ -29,7 +29,7 @@ function addTask() {
         console.log('could not add task ', err)
     })
 
-    $('task-name-input').val('');
+    $('#task-name-input').val('');
     $('#importance-input').val('');
     $('#date-input').val('');
     $('#notes-input').val('');
@@ -86,8 +86,16 @@ function renderDisplay(array) {
     $('#task-display').empty();
     for (let task of array) {
         $('#task-display').append(`
-            <div class="task-container">
-                ${task.task_name}. Due ${task.due_date}. <button data-id = "${task.id}" class="mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-id = "${task.id}" class="delete-task-btn">x</button>
+            <div class="task-container done-${task.done}">
+                <div class = "task-header">
+                    <span class = "task-importance importance-${task.importance}">${task.importance}</span><h3 class="task-name">${task.task_name}</h3> <span class="task-due-date">due: ${task.to_char}</span>
+                </div>
+                <div class="task-notes"> 
+                    ${task.notes}
+                </div>
+                <div class="task-footer">
+                    <button data-id = "${task.id}" class="btn ${task.done ? "btn-danger" : "btn-success"} mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
+                </div> 
             </div>
         `)
     }
