@@ -6,8 +6,7 @@ const pool = require('../modules/pool');
 //GET
 // get all rows from the database
 router.get('/', (req, res) => {
-    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks 
-                        `;
+    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks`;
     pool.query(queryText)
         .then((result) => {
             console.log('successful get request');

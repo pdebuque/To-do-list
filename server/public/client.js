@@ -9,6 +9,7 @@ function addClickListeners() {
     $('#submit-task-btn').on('click', addTask);
     $('#task-display').on('click', '.mark-done-btn', toggleDone);
     $('#task-display').on('click', '.delete-task-btn', deleteTask);
+    $('#task-complete-display').on('click', '.mark-done-btn', toggleDone)
 }
 
 function addTask() {
@@ -86,8 +87,39 @@ const badgeArray = [null, "bg-danger", "bg-warning", "bg-secondary"] // streamli
 
 function renderDisplay(array) {
     $('#task-display').empty();
-    for (let task of array) {
+    $('#task-complete-display').empty();
+    const todoArr = [];
+    const completeArr = [];
+    for (let task of array) { // funnel all tasks into complete and incomplete
+        if (task.done) {
+            completeArr.push(task)
+        } else {
+            todoArr.push(task)
+        }
+    }
+
+    for (let task of todoArr) {
         $('#task-display').append(`
+            <div class="task-container done-${task.done}">
+                <div class = "task-header">
+                    <div class="imp-and-name"> 
+                        <span class = "importance badge rounded-pill ${badgeArray[task.importance]}">${task.importance}</span>
+                        <h3 class="task-name">${task.task_name}</h3> 
+                    </div>
+                    <span class="task-due-date">due: ${task.to_char}</span>
+                </div>
+                <div class="task-notes"> 
+                    <div class="notes-spacer"></div>
+                    <div>${task.notes}</div>
+                </div>
+                <div class="task-footer">
+                    <button data-id = "${task.id}" class="btn ${task.done ? "btn-danger" : "btn-success"} mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
+                </div> 
+            </div>
+        `)
+    }
+    for (let task of completeArr) {
+        $('#task-complete-display').append(`
             <div class="task-container done-${task.done}">
                 <div class = "task-header">
                     <div class="imp-and-name"> 
