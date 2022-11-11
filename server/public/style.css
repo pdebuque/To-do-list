@@ -12,12 +12,17 @@ h1 {
 }
 
 #all-content {
-    width: 100%
+    /* padding: 0; */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* height: 500px; */
 }
 
 /* -------------- inputs ------------------- */
 #task-input-container {
     padding: 20px;
+    background-color: rgb(255, 254, 213);
 }
 
 
@@ -32,9 +37,13 @@ h1 {
 /* -------------- unfinished -------------- */
 
 #task-display-container {
+    background-color: rgb(255, 213, 213);
     padding: 20px;
 }
 
+select {
+    display: inline;
+}
 
 #task-display {
     margin: auto;
@@ -95,5 +104,6 @@ h1 {
 /* --------------- finished --------------- */
 
 #tasks-complete-container {
+    background-color: rgb(195, 247, 195);
     padding: 20px;
 }
