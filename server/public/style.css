@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+}
+
+h1 {
+    font-family: 'Fraunces', serif;
+    margin: 0;
+    padding: 40px;
+    text-align: center;
+    background-color: darkblue;
+    color: #ffffff;
+}
+
+#all-content {
+    width: 100%
+}
+
+/* -------------- inputs ------------------- */
+#task-input-container {
+    padding: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+/* -------------- unfinished -------------- */
+
+#task-display-container {
+    padding: 20px;
+}
+
+
+#task-display {
+    margin: auto;
+}
+
+.task-container {
+    display: flex;
+    flex-direction: column;
+    background: blanchedalmond;
+    padding: 10px;
+    margin: 2px;
+}
+
+.task-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.done-false {
+    border-left: 4px solid red;
+}
+
+.done-true {
+    border-left: 4px solid green;
+}
+
+.importance {
+    font-size: .9em;
+
+}
+
+.task-name {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.task-due-date {
+    display: inline-block;
+    text-align: right;
+}
+
+.task-notes {
+    display: flex;
+}
+
+.notes-spacer {
+    width: 40px;
+}
+
+.task-footer {
+    text-align: right;
+}
+
+
+/* --------------- finished --------------- */
+
+#tasks-complete {
+    padding: 20px;
+}

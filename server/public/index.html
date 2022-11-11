@@ -5,35 +5,89 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100;0,9..144,300;0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,700&family=Libre+Franklin:ital,wght@0,100;0,400;0,700;1,100;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
     <script src="jquery-3.6.1.js"></script>
     <script src="client.js"></script>
     <title>FULL STACK TO-DO</title>
 </head>
 
 <body>
-    <h1>full-stack to-do list</h1>
-    <section id="task-input-container">
-        create a task:
-        <div class="task-input">
-            task name:
-            <input type="text" id="task-name-input">
-        </div>
-        <div class="task-input">
-            importance (1-5):
-            <input type="number" id="importance-input">
-        </div>
-        <div class="task-input">
-            due date:
-            <input type="date" id="date-input">
-        </div>
-        <div class="task-input">
-            notes:
-            <input type="textarea" id="notes-input">
-        </div>
-        <button id="submit-task-btn">submit</button>
-    </section>
-    <section id="task-display"></section>
+    <h1>Paolo's Full-Stack To-Do List</h1>
+    <main id="all-content" class="container-fluid row">
+        <section class="col-2" id="task-input-container">
+            <!-- <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                One of three columns
+              </div>
+              <div class="col-sm">
+                One of three columns
+              </div>
+              <div class="col-sm">
+                One of three columns
+              </div>
+            </div>
+          </div>
+        <form> -->
+            <h2>CREATE NEW TASK</h2>
+            <div class="task-input">
+                <label for="task-name-input">Task name</label>
+                <input type="email" class="form-control" id="task-name-input" placeholder="Enter task name">
+            </div>
+            <div class="task-input dropdown">
+                <label for="exampleFormControlSelect1">Importance</label>
+                <select class="form-control" id="importance-input">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <!-- <button class="btn btn-primary dropdown-toggle" type="button"
+                    data-bs-toggle="dropdown">Importance</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">1</a></li>
+                    <li><a class="dropdown-item" href="#">2</a></li>
+                    <li><a class="dropdown-item" href="#">3</a></li>
+                    <li><a class="dropdown-item" href="#">4</a></li>
+                    <li><a class="dropdown-item" href="#">5</a></li>
+                </ul> -->
+            </div>
+            <div class="task-input">
+                <label for="date-input">Due date</label>
+                <input type="date" class="form-control" id="date-input" placeholder="Enter due date">
+            </div>
+            <div class="task-input">
+                <label for="notes-input">Notes</label>
+                <textarea class="form-control" id="notes-input" rows="3" placeholder="Enter any notes"></textarea>
+            </div>
+            <button id="submit-task-btn" type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+
+        </section>
+        <section class="col-5" id="task-display-container">
+            <h2>TASKS</h2>
+            <div id="task-display">
+
+
+
+            </div>
+        </section>
+        <section class="col-5" id="tasks-complete">
+            <h2>complete</h2>
+
+        </section>
+    </main>
 </body>
 
 </html>
