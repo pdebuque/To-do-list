@@ -14,7 +14,7 @@ h1 {
 #all-content {
     /* padding: 0; */
     width: 100%;
-    margin: 0;
+    margin: auto;
     padding: 0;
     /* height: 500px; */
 }
@@ -22,7 +22,8 @@ h1 {
 /* -------------- inputs ------------------- */
 #task-input-container {
     padding: 20px;
-    background-color: rgb(255, 254, 213);
+    /* background-color: rgb(255, 254, 213); */
+    /* border-right: 2px solid */
 }
 
 
@@ -37,8 +38,13 @@ h1 {
 /* -------------- unfinished -------------- */
 
 #task-display-container {
-    background-color: rgb(255, 213, 213);
+    /* background-color: rgb(255, 213, 213); */
     padding: 20px;
+}
+
+.title-and-add {
+    display: flex;
+    flex-direction: row
 }
 
 select {
@@ -58,7 +64,7 @@ select {
 .task-container {
     display: flex;
     flex-direction: column;
-    background: blanchedalmond;
+    background: rgb(243, 243, 243);
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     padding: 10px;
@@ -111,6 +117,6 @@ select {
 /* --------------- finished --------------- */
 
 #tasks-complete-container {
-    background-color: rgb(195, 247, 195);
+    /* background-color: rgb(195, 247, 195); */
     padding: 20px;
 }
