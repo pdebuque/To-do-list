@@ -31,14 +31,14 @@ router.get('/', (req, res) => {
 // get all unfinished task rows sorted by given parameter
 router.get('/incomplete/:param&:order', (req, res) => {
     console.log('received sort unfinished request', req.params);
-    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY') AS 'due_date_pretty, done, to_char(date_completed, 'Mon DD YYYY') AS 'date_completed_pretty', notes FROM tasks WHERE done=false ORDER BY ${req.params.param} ${req.params.order};`
+    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY') AS due_date_pretty, done, to_char(date_completed, 'Mon DD YYYY') AS date_completed_pretty, notes FROM tasks WHERE done=false ORDER BY ${req.params.param} ${req.params.order};`
     pool.query(queryText)
         .then((result) => {
             console.log('got incomplete tasks');
             res.send(result.rows);
         })
         .catch((err) => {
-            console.log('could not get incomplete tasks')
+            console.log('could not get incomplete tasks', err)
             res.sendStatus(500)
         })
 })
@@ -46,14 +46,14 @@ router.get('/incomplete/:param&:order', (req, res) => {
 // get all finished task rows sorted by given paramter
 router.get('/complete/:param&:order', (req, res) => {
     console.log('received sort complete request', req.params);
-    const queryText = `SELECT id, task_name, importance, to_char(date_completed, 'Mon DD, YYYY') AS 'date_completed_pretty, done, notes FROM tasks WHERE done=true ORDER BY ${req.params.param} ${req.params.order}`
+    const queryText = `SELECT id, task_name, importance, to_char(date_completed, 'Mon DD, YYYY') AS date_completed_pretty, done, notes FROM tasks WHERE done=true ORDER BY ${req.params.param} ${req.params.order}`
     pool.query(queryText)
         .then((result) => {
             console.log('got complete tasks');
             res.send(result.rows);
         })
         .catch((err) => {
-            console.log('could not get complete tasks')
+            console.log('could not get complete tasks', err)
             res.sendStatus(500)
         })
 })
