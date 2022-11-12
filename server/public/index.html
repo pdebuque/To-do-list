@@ -79,12 +79,28 @@
         <section class="col-5" id="task-display-container">
             <div class="task-display-header">
                 <h2>TASKS</h2>
-                <div class="sort">sort by:
+                <div class="sort" id="sort-incomp">sort by:
+                    <div class="btn-group" role="group" id="incomp-param-sel">
+                        <input type="radio" value="importance" class="btn-check" name="incomp-param" id="incomp-imp"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="incomp-imp">Importance</label>
+
+                        <input type="radio" value="due_date" class="btn-check" name="incomp-param" id="incomp-due"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="incomp-due">Due Date</label>
+                    </div>
+                    <div class="btn-group" role="group" id="incomp-order-sel">
+                        <input type="radio" value="ASC" class="btn-check" name="incomp-order" id="incomp-asc"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="incomp-asc">˄</label>
+
+                        <input type="radio" value="DESC" class="btn-check" name="incomp-order" id="incomp-desc"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="incomp-desc">˅</label>
+                    </div>
 
 
 
-
-                    [importance, due date] [asc,desc]
                 </div>
             </div>
             <div id="task-display">
@@ -96,7 +112,26 @@
         <section class="col-5" id="tasks-complete-container">
             <div class="task-display-header">
                 <h2>COMPLETED</h2>
-                <div class="sort">sort by: [importance, due date] [asc,desc]</div>
+                <div class="sort" id="sort-comp">sort by:
+                    <div class="btn-group" role="group" id="comp-param-sel">
+                        <input type="radio" value="importance" class="btn-check" name="comp-param" id="comp-imp"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="comp-imp">Importance</label>
+
+                        <input type="radio" value="due_date" class="btn-check" name="comp-param" id="comp-due"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="comp-due">Due Date</label>
+                    </div>
+                    <div class="btn-group" role="group" id="comp-order-sel">
+                        <input type="radio" value="ASC" class="btn-check" name="comp-order" id="comp-asc"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="comp-asc">˄</label>
+
+                        <input type="radio" value="DESC" class="btn-check" name="comp-order" id="comp-desc"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="comp-desc">˅</label>
+                    </div>
+                </div>
             </div>
             <div id="task-complete-display">
 
