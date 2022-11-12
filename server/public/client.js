@@ -6,8 +6,10 @@ function onReady() {
 }
 
 function addClickListeners() {
-    $('#submit-task-btn').on('click', addTask);
-    $('#all-content').on('click', '.mark-done-btn', toggleDone);
+    $('#submit-task-btn').on('click', addTask); // submit tasks to task list
+    // $('#all-content').on('click', '.mark-done-btn', toggleDone);
+    $('#task-display-container').on('click', '.mark-done-btn', completeTask) // when user clicks the mark done button in incomplete tasks, fire a put request to update its date_completed in db
+    // $('#all-content').on('click', '.mark-done-btn', getTime);
     $('#all-content').on('click', '.delete-task-btn', deleteTask);
     $('#sort-incomp').on('click', '.btn-group', sortIncomplete)
     $('#sort-comp').on('click', '.btn-group', sortComplete)
@@ -48,20 +50,44 @@ function getTasks() {
     })
 };
 
-function toggleDone() {
-    const id = $(this).data('id');
+// function toggleComplete() {
+//     console.log('in toggleDone');
+//     const now = new Date();
+//     const id = $(this).data('id');
 
+//     // if the task was incomplete, 
+//     if ()
+
+//     $.ajax({
+//         type: 'PUT',
+//         url: `/tasks/toggle/${id}`,
+//         data: { data: null }
+//     }).then(() => {
+//         getTasks();
+//     }).catch((err) => {
+//         console.log('could not toggle. ', err)
+//     })
+// }
+
+function completeTask() {
+    console.log('in completeTask');
+    const now = new Date().toDateString();
+    const id = $(this).data('id');
     $.ajax({
         type: 'PUT',
-        url: `/tasks/toggle/${id}`,
-        data: { data: null }
+        url: `/tasks/complete/${id}`,
+        data: {
+            date: now
+        }
     }).then(() => {
-        getTasks();
+        console.log('completed task');
+        getTasks()
     }).catch((err) => {
-        console.log('could not toggle. ', err)
+        console.log('could not complete task', err)
     })
 }
 
+// save the date completed
 
 function deleteTask() {
     const id = $(this).data('id');
@@ -159,7 +185,8 @@ function renderIncomplete(array) {
                     <div>${task.notes}</div>
                 </div>
                 <div class="task-footer">
-                    <button data-id = "${task.id}" class="btn ${task.done ? "btn-danger" : "btn-success"} mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-name = "${task.task_name}" data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
+                    <button data-id = "${task.id}" class="btn btn-success mark-done-btn">mark as done</button> 
+                    <button data-name = "${task.task_name}" data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
                 </div> 
             </div>
         `)
@@ -168,7 +195,6 @@ function renderIncomplete(array) {
 
 function renderComplete(array) {
     console.log('in renderComplete()');
-
     $('#task-complete-display').empty();
     for (let task of array) {
         $('#task-complete-display').append(`
@@ -185,7 +211,8 @@ function renderComplete(array) {
                     <div>${task.notes}</div>
                 </div>
                 <div class="task-footer">
-                    <button data-id = "${task.id}" class="btn ${task.done ? "btn-danger" : "btn-success"} mark-done-btn">${task.done ? "mark as not done" : "mark as done"}</button> <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
+                    <button data-id = "${task.id}" class="btn btn-danger mark-done-btn">mark as not done</button> 
+                    <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
                 </div> 
             </div>
         `)

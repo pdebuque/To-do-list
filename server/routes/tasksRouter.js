@@ -49,7 +49,8 @@ router.get('/complete/:param&:order', (req, res) => {
         })
 })
 
-
+// POST
+// add a new task
 router.post('/', (req, res) => {
     const newTask = req.body;
     const queryText = `INSERT INTO tasks ("task_name", "importance", "due_date", "done", "notes")
@@ -64,7 +65,8 @@ router.post('/', (req, res) => {
         })
 })
 
-
+//PUT
+// update task to DONE
 router.put('/toggle/:id', (req, res) => {
     const queryText = `UPDATE tasks SET done = NOT done WHERE id = $1`;
     pool.query(queryText, [req.params.id])
@@ -78,7 +80,21 @@ router.put('/toggle/:id', (req, res) => {
         })
 })
 
+router.put('/complete/:id', (req, res) => {
+    const queryText = `UPDATE tasks SET done = true, date_completed = $1 WHERE id = $2`
+    pool.query(queryText, [req.body.date, req.params.id])
+        .then(() => {
+            console.log('successfully stored complete date');
+            res.sendStatus(202);
+        })
+        .catch((err) => {
+            console.log('date save failed', err);
+            res.sendStatus(500)
+        })
+})
 
+// DELETE
+// delete a task
 router.delete('/:id', (req, res) => {
     const queryText = `DELETE FROM tasks WHERE id = $1`;
     pool.query(queryText, [req.params.id])
@@ -91,6 +107,5 @@ router.delete('/:id', (req, res) => {
             res.sendStatus(500)
         })
 })
-
 
 module.exports = router;
