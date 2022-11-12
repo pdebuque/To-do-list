@@ -89,7 +89,6 @@ function deleteTask() {
 // get requests for sorting
 
 function sortIncomplete() {
-    console.log('in sortIncomplete()')
     // harvest from dom
     const param = $('#incomp-param-sel input[name="incomp-param"]:checked').val();
     const order = $('#incomp-order-sel input[name="incomp-order"]:checked').val();
@@ -107,7 +106,6 @@ function sortIncomplete() {
 }
 
 function sortComplete() {
-    console.log('in sortComplete()')
     // harvest from dom
     const param = $('#comp-param-sel input[name="comp-param"]:checked').val();
     const order = $('#comp-order-sel input[name="comp-order"]:checked').val();
@@ -117,7 +115,7 @@ function sortComplete() {
         url: `/tasks/complete/${param}&${order}`
     }).then((res) => {
         console.log('complete tasks received', res);
-        renderIncomplete(res);
+        renderComplete(res);
     }).catch((err) => {
         console.log('could not receive complete tasks', err)
     })
@@ -144,6 +142,7 @@ function renderDisplay(array) {
 }
 
 function renderIncomplete(array) {
+    console.log('in renderIncomplete()');
     $('#task-display').empty();
     for (let task of array) {
         $('#task-display').append(`
@@ -168,6 +167,8 @@ function renderIncomplete(array) {
 }
 
 function renderComplete(array) {
+    console.log('in renderComplete()');
+
     $('#task-complete-display').empty();
     for (let task of array) {
         $('#task-complete-display').append(`
