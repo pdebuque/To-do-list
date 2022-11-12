@@ -3,7 +3,7 @@ body {
 }
 
 h1 {
-    font-family: 'Fraunces', serif;
+    /* font-family: 'Fraunces', serif; */
     margin: 0;
     padding: 40px;
     text-align: center;
@@ -12,12 +12,17 @@ h1 {
 }
 
 #all-content {
-    width: 100%
+    /* padding: 0; */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* height: 500px; */
 }
 
 /* -------------- inputs ------------------- */
 #task-input-container {
     padding: 20px;
+    background-color: rgb(255, 254, 213);
 }
 
 
@@ -32,20 +37,32 @@ h1 {
 /* -------------- unfinished -------------- */
 
 #task-display-container {
+    background-color: rgb(255, 213, 213);
     padding: 20px;
 }
 
+select {
+    display: inline;
+}
 
 #task-display {
     margin: auto;
+}
+
+.task-display-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .task-container {
     display: flex;
     flex-direction: column;
     background: blanchedalmond;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
     padding: 10px;
-    margin: 2px;
+    margin: 4px;
 }
 
 .task-header {
@@ -54,22 +71,23 @@ h1 {
     justify-content: space-between;
 }
 
+
 .done-false {
-    border-left: 4px solid red;
+    border-left: 10px solid red;
 }
 
 .done-true {
-    border-left: 4px solid green;
+    border-left: 10px solid green;
 }
 
 .importance {
     font-size: .9em;
-
 }
 
 .task-name {
     display: inline-block;
     margin-left: 10px;
+    margin-bottom: 0;
 }
 
 .task-due-date {
@@ -92,6 +110,7 @@ h1 {
 
 /* --------------- finished --------------- */
 
-#tasks-complete {
+#tasks-complete-container {
+    background-color: rgb(195, 247, 195);
     padding: 20px;
 }

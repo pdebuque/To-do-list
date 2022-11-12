@@ -14,6 +14,7 @@
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <!-- JavaScript Bundle with Popper -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous"></script>
@@ -26,65 +27,97 @@
     <h1>Paolo's Full-Stack To-Do List</h1>
     <main id="all-content" class="container-fluid row">
         <section class="col-2" id="task-input-container">
-            <!-- <div class="container">
-            <div class="row">
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-              <div class="col-sm">
-                One of three columns
-              </div>
-            </div>
-          </div>
-        <form> -->
-            <h2>CREATE NEW TASK</h2>
-            <div class="task-input">
-                <label for="task-name-input">Task name</label>
-                <input type="email" class="form-control" id="task-name-input" placeholder="Enter task name">
-            </div>
-            <div class="task-input dropdown">
-                <label for="exampleFormControlSelect1">Importance</label>
-                <select class="form-control" id="importance-input">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
-                <!-- <button class="btn btn-primary dropdown-toggle" type="button"
-                    data-bs-toggle="dropdown">Importance</button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">1</a></li>
-                    <li><a class="dropdown-item" href="#">2</a></li>
-                    <li><a class="dropdown-item" href="#">3</a></li>
-                    <li><a class="dropdown-item" href="#">4</a></li>
-                    <li><a class="dropdown-item" href="#">5</a></li>
-                </ul> -->
-            </div>
-            <div class="task-input">
-                <label for="date-input">Due date</label>
-                <input type="date" class="form-control" id="date-input" placeholder="Enter due date">
-            </div>
-            <div class="task-input">
-                <label for="notes-input">Notes</label>
-                <textarea class="form-control" id="notes-input" rows="3" placeholder="Enter any notes"></textarea>
-            </div>
-            <button id="submit-task-btn" type="submit" class="btn btn-primary">Submit</button>
+
+            <form>
+                <h2>CREATE NEW TASK</h2>
+                <div class="task-input">
+                    <label for="task-name-input">Task name</label>
+                    <input type="email" class="form-control" id="task-name-input" placeholder="Enter task name">
+                </div>
+                <div class="task-input dropdown">
+                    <label for="exampleFormControlSelect1">Importance</label>
+                    <select class="form-control" id="importance-input">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+
+                </div>
+                <div class="task-input">
+                    <label for="date-input">Due date</label>
+                    <input type="date" class="form-control" id="date-input" placeholder="Enter due date">
+                </div>
+                <div class="task-input">
+                    <label for="notes-input">Notes</label>
+                    <textarea class="form-control" id="notes-input" rows="3" placeholder="Enter any notes"></textarea>
+                </div>
+                <button id="submit-task-btn" type="submit" class="btn btn-primary">Submit</button>
             </form>
 
 
         </section>
         <section class="col-5" id="task-display-container">
-            <h2>TASKS</h2>
+            <div class="task-display-header">
+                <h2>TASKS</h2>
+                <div class="sort" id="sort-incomp">sort by:
+                    <div class="btn-group" role="group" id="incomp-param-sel">
+                        <input type="radio" value="importance" class="btn-check" name="incomp-param" id="incomp-imp"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="incomp-imp">Importance</label>
+
+                        <input type="radio" value="due_date" class="btn-check" name="incomp-param" id="incomp-due"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="incomp-due">Due Date</label>
+                    </div>
+                    <div class="btn-group" role="group" id="incomp-order-sel">
+                        <input type="radio" value="ASC" class="btn-check" name="incomp-order" id="incomp-asc"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="incomp-asc">˄</label>
+
+                        <input type="radio" value="DESC" class="btn-check" name="incomp-order" id="incomp-desc"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="incomp-desc">˅</label>
+                    </div>
+
+
+
+                </div>
+            </div>
             <div id="task-display">
 
 
 
             </div>
         </section>
-        <section class="col-5" id="tasks-complete">
-            <h2>complete</h2>
+        <section class="col-5" id="tasks-complete-container">
+            <div class="task-display-header">
+                <h2>COMPLETED</h2>
+                <div class="sort" id="sort-comp">sort by:
+                    <div class="btn-group" role="group" id="comp-param-sel">
+                        <input type="radio" value="importance" class="btn-check" name="comp-param" id="comp-imp"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="comp-imp">Importance</label>
+
+                        <input type="radio" value="due_date" class=" btn-check" name="comp-param" id="comp-due"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="comp-due">Due Date</label>
+                    </div>
+                    <div class="btn-group" role="group" id="comp-order-sel">
+                        <input type="radio" value="ASC" class="btn-check" name="comp-order" id="comp-asc"
+                            autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="comp-asc">˄</label>
+
+                        <input type="radio" value="DESC" class="btn-check" name="comp-order" id="comp-desc"
+                            autocomplete="off">
+                        <label class="btn btn-outline-primary" for="comp-desc">˅</label>
+                    </div>
+                </div>
+            </div>
+            <div id="task-complete-display">
+
+
+
+            </div>
 
         </section>
     </main>
