@@ -6,7 +6,16 @@ const pool = require('../modules/pool');
 //GET
 // get all rows from the database
 router.get('/', (req, res) => {
-    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks ORDER BY importance`;
+    const queryText = `SELECT 
+                        id, 
+                        task_name, 
+                        importance, 
+                        to_char(due_date, 'Mon DD, YYYY') AS due_date_pretty, 
+                        to_char(date_completed, 'Mon DD, YYYY') AS date_completed_pretty, 
+                        done, 
+                        notes 
+                        FROM tasks 
+                        ORDER BY importance`;
     pool.query(queryText)
         .then((result) => {
             // console.log('successful get request');
@@ -14,7 +23,7 @@ router.get('/', (req, res) => {
             res.send(result.rows);
         })
         .catch((err) => {
-            console.log('could not get tasks')
+            console.log('could not get tasks', err)
             res.sendStatus(500)
         })
 })
@@ -22,7 +31,7 @@ router.get('/', (req, res) => {
 // get all unfinished task rows sorted by given parameter
 router.get('/incomplete/:param&:order', (req, res) => {
     console.log('received sort unfinished request', req.params);
-    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks WHERE done=false ORDER BY ${req.params.param} ${req.params.order};`
+    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY') AS 'due_date_pretty, done, to_char(date_completed, 'Mon DD YYYY') AS 'date_completed_pretty', notes FROM tasks WHERE done=false ORDER BY ${req.params.param} ${req.params.order};`
     pool.query(queryText)
         .then((result) => {
             console.log('got incomplete tasks');
@@ -37,7 +46,7 @@ router.get('/incomplete/:param&:order', (req, res) => {
 // get all finished task rows sorted by given paramter
 router.get('/complete/:param&:order', (req, res) => {
     console.log('received sort complete request', req.params);
-    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks WHERE done=true ORDER BY ${req.params.param} ${req.params.order}`
+    const queryText = `SELECT id, task_name, importance, to_char(date_completed, 'Mon DD, YYYY') AS 'date_completed_pretty, done, notes FROM tasks WHERE done=true ORDER BY ${req.params.param} ${req.params.order}`
     pool.query(queryText)
         .then((result) => {
             console.log('got complete tasks');
@@ -80,6 +89,7 @@ router.put('/toggle/:id', (req, res) => {
         })
 })
 
+// complete task: save date completed
 router.put('/complete/:id', (req, res) => {
     const queryText = `UPDATE tasks SET done = true, date_completed = $1 WHERE id = $2`
     pool.query(queryText, [req.body.date, req.params.id])
@@ -89,6 +99,21 @@ router.put('/complete/:id', (req, res) => {
         })
         .catch((err) => {
             console.log('date save failed', err);
+            res.sendStatus(500)
+        })
+})
+
+// refresh task: make a task active again
+router.put('/refresh/:id', (req, res) => {
+    const queryText = `UPDATE tasks SET done = false,
+    date_completed = NULL WHERE id = $1`
+    pool.query(queryText, [req.params.id])
+        .then(() => {
+            console.log('successfully refreshed task');
+            res.sendStatus(202)
+        })
+        .catch((err) => {
+            console.log('could not refresh task', err)
             res.sendStatus(500)
         })
 })

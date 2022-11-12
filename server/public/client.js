@@ -7,12 +7,10 @@ function onReady() {
 
 function addClickListeners() {
     $('#submit-task-btn').on('click', addTask); // submit tasks to task list
-    // $('#all-content').on('click', '.mark-done-btn', toggleDone);
-    $('#task-display-container').on('click', '.mark-done-btn', completeTask) // when user clicks the mark done button in incomplete tasks, fire a put request to update its date_completed in db
-    // $('#all-content').on('click', '.mark-done-btn', getTime);
+    $('#all-content').on('click', '.mark-done-btn', toggleComplete); // when user clicks the mark done button in incomplete tasks, fire a put request to update its date_completed in db
     $('#all-content').on('click', '.delete-task-btn', deleteTask);
-    $('#sort-incomp').on('click', '.btn-group', sortIncomplete)
-    $('#sort-comp').on('click', '.btn-group', sortComplete)
+    $('#sort-incomp').on('click', '.btn-group', sortIncomplete);
+    $('#sort-comp').on('click', '.btn-group', sortComplete);
 }
 
 function addTask() {
@@ -50,29 +48,22 @@ function getTasks() {
     })
 };
 
-// function toggleComplete() {
-//     console.log('in toggleDone');
-//     const now = new Date();
-//     const id = $(this).data('id');
+function toggleComplete() {
+    console.log('in toggleComplete');
+    const id = $(this).data('id');
 
-//     // if the task was incomplete, 
-//     if ()
-
-//     $.ajax({
-//         type: 'PUT',
-//         url: `/tasks/toggle/${id}`,
-//         data: { data: null }
-//     }).then(() => {
-//         getTasks();
-//     }).catch((err) => {
-//         console.log('could not toggle. ', err)
-//     })
-// }
-
-function completeTask() {
+    // if the task is complete, do refresh it 
+    if ($(this).data('done')) {
+        refreshTask(id)
+    } else {
+        completeTask(id)
+    }
+}
+// save the date completed
+function completeTask(id) {
     console.log('in completeTask');
     const now = new Date().toDateString();
-    const id = $(this).data('id');
+    // const id = $(this).data('id');
     $.ajax({
         type: 'PUT',
         url: `/tasks/complete/${id}`,
@@ -81,13 +72,28 @@ function completeTask() {
         }
     }).then(() => {
         console.log('completed task');
-        getTasks()
+        getTasks();
     }).catch((err) => {
         console.log('could not complete task', err)
     })
 }
 
-// save the date completed
+function refreshTask(id) {
+    console.log('in refreshTask');
+    // const id = $(this).data('id');
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/refresh/${id}`,
+        data: {
+            data: null
+        }
+    }).then(() => {
+        console.log('refreshed task');
+        getTasks();
+    }).catch((err) => {
+        console.log('could not refresh task', err)
+    })
+}
 
 function deleteTask() {
     const id = $(this).data('id');
@@ -113,7 +119,6 @@ function deleteTask() {
 }
 
 // get requests for sorting
-
 function sortIncomplete() {
     // harvest from dom
     const param = $('#incomp-param-sel input[name="incomp-param"]:checked').val();
@@ -178,14 +183,14 @@ function renderIncomplete(array) {
                         <span class = "importance badge rounded-pill ${badgeArray[task.importance]}">${task.importance}</span>
                         <h3 class="task-name">${task.task_name}</h3> 
                     </div>
-                    <span class="task-due-date">due: ${task.to_char}</span>
+                    <span class="task-due-date">due: ${task.due_date_pretty}</span>
                 </div>
                 <div class="task-notes"> 
                     <div class="notes-spacer"></div>
                     <div>${task.notes}</div>
                 </div>
                 <div class="task-footer">
-                    <button data-id = "${task.id}" class="btn btn-success mark-done-btn">mark as done</button> 
+                    <button data-id = "${task.id}" data-done = "${task.done}" class="btn btn-success mark-done-btn">mark as done</button> 
                     <button data-name = "${task.task_name}" data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
                 </div> 
             </div>
@@ -204,14 +209,14 @@ function renderComplete(array) {
                         <span class = "importance badge rounded-pill ${badgeArray[task.importance]}">${task.importance}</span>
                         <h3 class="task-name">${task.task_name}</h3> 
                     </div>
-                    <span class="task-due-date">due: ${task.to_char}</span>
+                    <span class="task-completed">done: ${task.date_completed_pretty}</span>
                 </div>
                 <div class="task-notes"> 
                     <div class="notes-spacer"></div>
                     <div>${task.notes}</div>
                 </div>
                 <div class="task-footer">
-                    <button data-id = "${task.id}" class="btn btn-danger mark-done-btn">mark as not done</button> 
+                    <button data-done = "${task.done}" data-id = "${task.id}" class="btn btn-danger mark-done-btn">mark as not done</button> 
                     <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
                 </div> 
             </div>
