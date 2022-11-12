@@ -9,6 +9,8 @@ function addClickListeners() {
     $('#submit-task-btn').on('click', addTask);
     $('#all-content').on('click', '.mark-done-btn', toggleDone);
     $('#all-content').on('click', '.delete-task-btn', deleteTask);
+    $('#sort-incomp').on('click', '.btn-group', sortIncomplete)
+    $('#sort-comp').on('click', '.btn-group', sortComplete)
 }
 
 function addTask() {
@@ -84,19 +86,47 @@ function deleteTask() {
     })
 }
 
+// get requests for sorting
+
+function sortIncomplete() {
+    // harvest from dom
+    const param = $('#incomp-param-sel input[name="incomp-param"]:checked').val();
+    const order = $('#incomp-order-sel input[name="incomp-order"]:checked').val();
+    console.log('incomplete: data to send: ', param, order)
+
+    $.ajax({
+        type: 'GET',
+        url: `/tasks/incomplete/${param}&${order}`
+    }).then((res) => {
+        console.log('incomplete tasks received', res);
+        renderIncomplete(res);
+    }).catch((err) => {
+        console.log('could not receive incomplete tasks', err)
+    })
+}
+
+function sortComplete() {
+    // harvest from dom
+    const param = $('#comp-param-sel input[name="comp-param"]:checked').val();
+    const order = $('#comp-order-sel input[name="comp-order"]:checked').val();
+
+    $.ajax({
+        type: 'GET',
+        url: `/tasks/complete/${param}&${order}`
+    }).then((res) => {
+        console.log('complete tasks received', res);
+        renderComplete(res);
+    }).catch((err) => {
+        console.log('could not receive complete tasks', err)
+    })
+}
 
 
-
-
-
-
-// ------------------------------------------
+// ------------------ render ------------------------
 
 const badgeArray = [null, "bg-danger", "bg-warning", "bg-secondary"] // streamlines selection of badge type on rendering
 
 function renderDisplay(array) {
-    $('#task-display').empty();
-    $('#task-complete-display').empty();
     const todoArr = [];
     const completeArr = [];
     for (let task of array) { // funnel all tasks into complete and incomplete
@@ -107,7 +137,14 @@ function renderDisplay(array) {
         }
     }
 
-    for (let task of todoArr) {
+    renderIncomplete(todoArr); // separate out render functions to better work with sorting
+    renderComplete(completeArr);
+}
+
+function renderIncomplete(array) {
+    console.log('in renderIncomplete()');
+    $('#task-display').empty();
+    for (let task of array) {
         $('#task-display').append(`
             <div class="task-container done-${task.done}">
                 <div class = "task-header">
@@ -127,7 +164,13 @@ function renderDisplay(array) {
             </div>
         `)
     }
-    for (let task of completeArr) {
+}
+
+function renderComplete(array) {
+    console.log('in renderComplete()');
+
+    $('#task-complete-display').empty();
+    for (let task of array) {
         $('#task-complete-display').append(`
             <div class="task-container done-${task.done}">
                 <div class = "task-header">

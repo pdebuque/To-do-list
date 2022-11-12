@@ -6,11 +6,11 @@ const pool = require('../modules/pool');
 //GET
 // get all rows from the database
 router.get('/', (req, res) => {
-    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks`;
+    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks ORDER BY importance`;
     pool.query(queryText)
         .then((result) => {
-            console.log('successful get request');
-            console.log(result.rows)
+            // console.log('successful get request');
+            // console.log(result.rows)
             res.send(result.rows);
         })
         .catch((err) => {
@@ -18,6 +18,37 @@ router.get('/', (req, res) => {
             res.sendStatus(500)
         })
 })
+
+// get all unfinished task rows sorted by given parameter
+router.get('/incomplete/:param&:order', (req, res) => {
+    console.log('received sort unfinished request', req.params);
+    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks WHERE done=false ORDER BY ${req.params.param} ${req.params.order};`
+    pool.query(queryText)
+        .then((result) => {
+            console.log('got incomplete tasks');
+            res.send(result.rows);
+        })
+        .catch((err) => {
+            console.log('could not get incomplete tasks')
+            res.sendStatus(500)
+        })
+})
+
+// get all finished task rows sorted by given paramter
+router.get('/complete/:param&:order', (req, res) => {
+    console.log('received sort complete request', req.params);
+    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY'), done, notes FROM tasks WHERE done=true ORDER BY ${req.params.param} ${req.params.order}`
+    pool.query(queryText)
+        .then((result) => {
+            console.log('got complete tasks');
+            res.send(result.rows);
+        })
+        .catch((err) => {
+            console.log('could not get complete tasks')
+            res.sendStatus(500)
+        })
+})
+
 
 router.post('/', (req, res) => {
     const newTask = req.body;
