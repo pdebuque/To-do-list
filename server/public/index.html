@@ -25,40 +25,50 @@
 
 <body>
     <h1>Paolo's Full-Stack To-Do List</h1>
-    <main id="all-content" class="container-fluid row">
-        <section class="col-2" id="task-input-container">
-
-            <form>
-                <h2>CREATE NEW TASK</h2>
-                <div class="task-input">
-                    <label for="task-name-input">Task name</label>
-                    <input type="email" class="form-control" id="task-name-input" placeholder="Enter task name">
-                </div>
-                <div class="task-input dropdown">
-                    <label for="exampleFormControlSelect1">Importance</label>
-                    <select class="form-control" id="importance-input">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select>
-
-                </div>
-                <div class="task-input">
-                    <label for="date-input">Due date</label>
-                    <input type="date" class="form-control" id="date-input" placeholder="Enter due date">
-                </div>
-                <div class="task-input">
-                    <label for="notes-input">Notes</label>
-                    <textarea class="form-control" id="notes-input" rows="3" placeholder="Enter any notes"></textarea>
-                </div>
-                <button id="submit-task-btn" type="submit" class="btn btn-primary">Submit</button>
-            </form>
-
-
+    <main id="all-content" class="container row">
+        <section class="col-md-1" id="spacer">
         </section>
-        <section class="col-5" id="task-display-container">
+        <section class="col-md-8" id="task-display-container">
+            <div class="collapse" id="inputs-container">
+                <div class="card card-body">
+                    <form>
+                        <h3>CREATE NEW TASK</h3>
+                        <div class="task-input">
+                            <label for="task-name-input">Task name</label>
+                            <input type="text" class="form-control" id="task-name-input" placeholder="Enter task name">
+                        </div>
+                        <div class="task-input dropdown">
+                            <label for="exampleFormControlSelect1">Importance</label>
+                            <select class="form-control" id="importance-input">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+
+                        </div>
+                        <div class="task-input">
+                            <label for="date-input">Due date</label>
+                            <input type="date" class="form-control" id="date-input" placeholder="Enter due date">
+                        </div>
+                        <div class="task-input">
+                            <label for="notes-input">Notes</label>
+                            <textarea class="form-control" id="notes-input" rows="3"
+                                placeholder="Enter any notes"></textarea>
+                        </div>
+                        <button id="submit-task-btn" type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
             <div class="task-display-header">
-                <h2>TASKS</h2>
+                <div class="title-and-add">
+                    <h2>TASKS</h2>
+                    <a class="btn btn-primary" data-bs-toggle="collapse" href="#inputs-container" role="button"
+                        aria-expanded="false" aria-controls="collapseButton">
+                        +
+                    </a>
+
+                </div>
+
                 <div class="sort" id="sort-incomp">sort by:
                     <div class="btn-group" role="group" id="incomp-param-sel">
                         <input type="radio" value="importance" class="btn-check" name="incomp-param" id="incomp-imp"
@@ -83,16 +93,50 @@
 
                 </div>
             </div>
+
             <div id="task-display">
 
+                <div class="new-task-container">
+                    <div class="task-container-min">
+                        <div class="task-container-front">
+                            <span class="new-importance">2</span>
+                            <a class="btn" data-bs-toggle="collapse" href="#task-notes-1" role="button"
+                                aria-expanded="false" aria-controls="collapseButton">
+                                <img class="three-dots-icon" src="images/three dots.png" alt="three dots">
+                            </a>
+                            <span class="new-task-name">TASK NAME</span>
+                        </div>
+                        <div class="task-container-back">
+
+                            <span class="new-due-date">due 11/14/22</span>
+
+                            <input type="radio" name="" id="">
+                        </div>
+                    </div>
+                    <div class="collapse" id="task-notes-1">
+                        <div class="task-notes-flex">
+                            <div class="new-notes">
+                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi fugit accusantium
+                                expedita
+                                voluptatum blanditiis
+                            </div>
+                            <img class="edit-btn" src="images/edit.png" alt="edit icon">
+                            <img src="images/delete.png" alt="delete icon" class="delete-btn">
+                        </div>
+                    </div>
 
 
-            </div>
+
+                </div>
         </section>
-        <section class="col-5" id="tasks-complete-container">
+        <section class="col-md-3" id="tasks-complete-container">
             <div class="task-display-header">
                 <h2>COMPLETED</h2>
-                <div class="sort" id="sort-comp">sort by:
+
+
+
+
+                <!-- <div class="sort" id="sort-comp">sort by:
                     <div class="btn-group" role="group" id="comp-param-sel">
                         <input type="radio" value="importance" class="btn-check" name="comp-param" id="comp-imp"
                             autocomplete="off" checked>
@@ -111,11 +155,35 @@
                             autocomplete="off">
                         <label class="btn btn-outline-primary" for="comp-desc">˅</label>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div id="task-complete-display">
 
+                <div class="task-comp-container">
+                    <div class="task-comp-min">
+                        <div class="task-comp-front">
+                            <div class="grey"></div>
+                            <a class="btn" data-bs-toggle="collapse" href="#task-notes-n" role="button"
+                                aria-expanded="false" aria-controls="collapseButton">
+                                <img class="comp-three-dots-icon" src="images/three dots.png" alt="three dots">
+                            </a>
+                            <div class="task-comp-name">
+                                TASK NAME
+                            </div>
+                        </div>
+                        <div class="task-comp-back">
+                            <img src="images/delete.png" alt="delete icon" class="comp-delete-btn">
+                        </div>
+                    </div>
+                    <div class="collapse" id="task-notes-n">
+                        <div class="task-notes-flex">
+                            <div class="new-notes">
+                                completed 11/12/22
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
