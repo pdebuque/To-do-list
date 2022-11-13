@@ -8,6 +8,8 @@ function onReady() {
 function addClickListeners() {
     $('#submit-task-btn').on('click', addTask); // submit tasks to task list
     $('#all-content').on('click', '.mark-done-box', toggleComplete); // when user clicks the mark done button in incomplete tasks, fire a put request to update its date_completed in db
+    $('#all-content').on('click', '.comp-delete-btn', deleteTask)
+    $('#all-content').on('click', '.comp-toggle-btn', toggleComplete)
     $('#all-content').on('click', '.delete-task-btn', deleteTask);
     $('#sort-incomp').on('click', '.btn-group', sortIncomplete);
     $('#sort-comp').on('click', '.btn-group', sortComplete);
@@ -51,7 +53,7 @@ function getTasks() {
 function toggleComplete() {
     console.log('in toggleComplete');
     const id = $(this).data('id');
-
+    console.log(id, $(this).data('done'));
     // if the task is complete, do refresh it 
     if ($(this).data('done')) {
         refreshTask(id)
@@ -177,33 +179,32 @@ function renderIncomplete(array) {
     $('#task-display').empty();
     for (let task of array) {
         $('#task-display').append(`
-        <div class="new-task-container">
+        <div class="task-container">
             <div class="task-container-min">
                 <div class="task-container-front">
-                  
-                    <span class="new-importance new-importance-${task.importance}">${task.importance}</span>
-                 
+                    <span class="task-importance task-importance-${task.importance}">${task.importance}</span>
                     <a class="btn" data-bs-toggle="collapse" href="#task-notes-${task.id}" role="button"
                          aria-expanded="false" aria-controls="collapseButton">
-                        <img class="three-dots-icon" src="images/three dots.png" alt="three dots">
+                        <img class="task-three-dots-icon" src="images/three dots.png" alt="three dots">
                     </a>
-                    <span class="new-task-name">${task.task_name}</span>
+                    <span class="task-name">${task.task_name}</span>
                 </div>
                 <div class="task-container-back">
-                    <span class="new-due-date">due ${task.due_date_pretty}</span>
-                    <input type="checkbox" class="mark-done-box" data-id="${task.id}" name="done-box-${task.id}" id="done-box-${task.id}">
+                    <span class="task-due-date">due ${task.due_date_pretty}</span>
+                    <img src="images/complete.png" alt="complete icon" class="mark-done-box" data-done="false" data-id="${task.id}" id = "done-box-${task.id}">
+                    
                 </div>
             </div>
             <div class="collapse" id="task-notes-${task.id}">
                 <div class="task-notes-flex">
-                    <div class="new-notes">
+                    <div class="task-notes">
                         ${task.notes}
                     </div>
                     <img class="edit-btn" src="images/edit.png" alt="edit icon">
                     <img src="images/delete.png" alt="delete icon" class="delete-task-btn">
                 </div>
             </div>
-
+        </div>
 
 `)
     }
@@ -214,23 +215,32 @@ function renderComplete(array) {
     $('#task-complete-display').empty();
     for (let task of array) {
         $('#task-complete-display').append(`
-            <div class= "task-container done-${task.done}">
-                <div class = "task-header">
-                    <div class="imp-and-name"> 
-                        <span class = "importance badge rounded-pill ${badgeArray[task.importance]}">${task.importance}</span>
-                        <h3 class="task-name">${task.task_name}</h3> 
+        <div class="comp-container">
+            <div class="comp-min">
+                <div class="comp-front">
+                    <div class="grey"></div>
+                    <a class="btn" data-bs-toggle="collapse" href="#comp-notes-${task.id}" role="button"
+                        aria-expanded="false" aria-controls="collapseButton">
+                        <img class="comp-three-dots-icon" src="images/three dots.png" alt="three dots">
+                    </a>
+                    <div class="comp-name">
+                        ${task.task_name}
                     </div>
-                    <span class="task-completed">done: ${task.date_completed_pretty}</span>
                 </div>
-                <div class="task-notes"> 
-                    <div class="notes-spacer"></div>
-                    <div>${task.notes}</div>
+                <div class="comp-back">
+                    <img src="images/incomplete.png" alt="incomplete icon" data-id="${task.id}" class="comp-toggle-btn">
+                    <img src="images/delete.png" alt="delete icon" data-done="true" data-id="${task.id}" class="comp-delete-btn">
                 </div>
-                <div class="task-footer">
-                    <button data-done = "${task.done}" data-id = "${task.id}" class="btn btn-danger mark-done-btn">mark as not done</button> 
-                    <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
-                </div> 
-            </div >
+            </div>
+            <div class="collapse" id="comp-notes-${task.id}">
+                <div class="comp-notes-flex">
+                    <div class="comp-notes">
+                        completed ${task.date_completed_pretty}
+                    </div>
+
+                </div>
+            </div>
+        </div>
             `)
     }
 }
