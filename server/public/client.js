@@ -174,7 +174,7 @@ function renderDisplay(array) {
 
 function renderIncomplete(array) {
     console.log('in renderIncomplete()');
-    $('#task-display').empty();
+    // $('#task-display').empty();
     for (let task of array) {
         $('#task-display').append(`
             <div class="task-container done-${task.done}">

@@ -7,7 +7,9 @@ h1 {
     margin: 0;
     padding: 40px;
     text-align: center;
-    background-color: darkblue;
+    background: rgb(68, 114, 120);
+    background: linear-gradient(0deg, rgb(46, 77, 82) 0%, rgba(40, 72, 93, 1) 61%, rgba(29, 52, 83, 1) 100%);
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%), inset 0 -1px 0 rgb(0 0 0 / 15%);
     color: #ffffff;
 }
 
@@ -31,9 +33,88 @@ h1 {
 
 
 
+/* ----------- reformat ------------- */
 
+.new-task-container {
 
+    background: rgb(243, 243, 243);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 0;
+    margin: 4px;
+}
 
+.task-container-min {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.task-container-front {
+    display: flex;
+    margin: 0;
+    padding: 0;
+
+}
+
+.new-importance {
+    padding: 4px 18px;
+    background-color: #FFC107;
+    color: white;
+    font-size: 24px;
+}
+
+.task-container-front a {
+    padding: 6px 8px;
+}
+
+.three-dots-icon {
+    height: 20px;
+}
+
+.new-task-name {
+    padding: 4px 10px 4px 4px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.new-due-date {
+    padding: 10px;
+    color: rgb(108, 108, 108);
+    font-weight: 200;
+}
+
+.task-container-back {
+    padding-right: 20px;
+}
+
+#task-notes-1 {
+    /* display: flex; */
+    /* justify-content: space-between;
+    align-items: flex-end; */
+    border-top: 1px solid rgb(223, 223, 223);
+    border-bottom: 1px solid rgb(223, 223, 223);
+    padding: 10px 20px 10px 12%;
+    background-color: white;
+
+}
+
+.task-notes-flex {
+    display: flex;
+}
+
+.new-notes {
+    padding: 0 10% 0 0;
+}
+
+.edit-btn {
+    height: 30px;
+    margin: 5px 0px;
+}
+
+.delete-btn {
+    height: 40px
+}
 
 /* -------------- unfinished -------------- */
 
