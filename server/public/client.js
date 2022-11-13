@@ -228,8 +228,8 @@ function renderComplete(array) {
                     </div>
                 </div>
                 <div class="comp-back">
-                    <img src="images/incomplete.png" alt="incomplete icon" data-id="${task.id}" class="comp-toggle-btn">
-                    <img src="images/delete.png" alt="delete icon" data-done="${task.done}" data-id="${task.id}" class="comp-delete-btn">
+                    <img src="images/incomplete.png" alt="incomplete icon" data-done = "${task.done}" data-id="${task.id}" class="comp-toggle-btn">
+                    <img src="images/delete.png" alt="delete icon"  data-id = "${task.id}" class="comp-delete-btn">
                 </div>
             </div>
             <div class="collapse" id="comp-notes-${task.id}">
