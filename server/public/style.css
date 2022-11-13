@@ -31,9 +31,41 @@ h1 {
 
 
 
+/* ---------- spacer ------------- */
+
+#spacer {
+    padding: 20px 20px 20px 50px;
+    background-color: rgb(218, 237, 252);
+    background-clip: content-box;
+}
 
 
 /* ----------- reformat ------------- */
+
+#task-display-container {
+    padding: 20px;
+}
+
+.title-and-add {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.task-display-header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#task-title {
+    margin: 0;
+}
+
+#add-task-btn {
+    margin-left: 12px;
+}
 
 .task-container {
 
@@ -141,7 +173,7 @@ h1 {
     cursor: pointer;
     opacity: 1;
     border-radius: 2px;
-    background: rgb(246, 244, 131);
+    background: rgb(254, 253, 213);
     transition: .1s;
 }
 
@@ -156,7 +188,7 @@ h1 {
     cursor: pointer;
     opacity: 1;
     border-radius: 2px;
-    background: rgb(246, 131, 131);
+    background: rgb(252, 218, 218);
     transition: .1s;
 }
 
@@ -201,6 +233,8 @@ h1 {
 
 .comp-name {
     padding: 2px 10px 2px 0px;
+    font-size: 18px;
+    font-weight: 200;
 }
 
 .comp-back {
@@ -211,11 +245,11 @@ h1 {
     height: 20px;
 }
 
-.comp-toggle-img:hover {
+.comp-toggle-btn:hover {
     cursor: pointer;
     opacity: 1;
     border-radius: 2px;
-    background: rgb(176, 232, 176);
+    background: rgb(221, 255, 221);
     transition: .1s;
 }
 
@@ -227,7 +261,7 @@ h1 {
     cursor: pointer;
     opacity: 1;
     border-radius: 2px;
-    background: rgb(246, 131, 131);
+    background: rgb(252, 218, 218);
     transition: .1s;
 }
 
