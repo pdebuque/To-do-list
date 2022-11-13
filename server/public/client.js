@@ -7,7 +7,7 @@ function onReady() {
 
 function addClickListeners() {
     $('#submit-task-btn').on('click', addTask); // submit tasks to task list
-    $('#all-content').on('click', '.mark-done-btn', toggleComplete); // when user clicks the mark done button in incomplete tasks, fire a put request to update its date_completed in db
+    $('#all-content').on('click', '.mark-done-box', toggleComplete); // when user clicks the mark done button in incomplete tasks, fire a put request to update its date_completed in db
     $('#all-content').on('click', '.delete-task-btn', deleteTask);
     $('#sort-incomp').on('click', '.btn-group', sortIncomplete);
     $('#sort-comp').on('click', '.btn-group', sortComplete);
@@ -174,27 +174,38 @@ function renderDisplay(array) {
 
 function renderIncomplete(array) {
     console.log('in renderIncomplete()');
-    // $('#task-display').empty();
+    $('#task-display').empty();
     for (let task of array) {
         $('#task-display').append(`
-            <div class="task-container done-${task.done}">
-                <div class = "task-header">
-                    <div class="imp-and-name"> 
-                        <span class = "importance badge rounded-pill ${badgeArray[task.importance]}">${task.importance}</span>
-                        <h3 class="task-name">${task.task_name}</h3> 
-                    </div>
-                    <span class="task-due-date">due: ${task.due_date_pretty}</span>
+        <div class="new-task-container">
+            <div class="task-container-min">
+                <div class="task-container-front">
+                  
+                    <span class="new-importance new-importance-${task.importance}">${task.importance}</span>
+                 
+                    <a class="btn" data-bs-toggle="collapse" href="#task-notes-${task.id}" role="button"
+                         aria-expanded="false" aria-controls="collapseButton">
+                        <img class="three-dots-icon" src="images/three dots.png" alt="three dots">
+                    </a>
+                    <span class="new-task-name">${task.task_name}</span>
                 </div>
-                <div class="task-notes"> 
-                    <div class="notes-spacer"></div>
-                    <div>${task.notes}</div>
+                <div class="task-container-back">
+                    <span class="new-due-date">due ${task.due_date_pretty}</span>
+                    <input type="checkbox" class="mark-done-box" data-id="${task.id}" name="done-box-${task.id}" id="done-box-${task.id}">
                 </div>
-                <div class="task-footer">
-                    <button data-id = "${task.id}" data-done = "${task.done}" class="btn btn-success mark-done-btn">mark as done</button> 
-                    <button data-name = "${task.task_name}" data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
-                </div> 
             </div>
-        `)
+            <div class="collapse" id="task-notes-${task.id}">
+                <div class="task-notes-flex">
+                    <div class="new-notes">
+                        ${task.notes}
+                    </div>
+                    <img class="edit-btn" src="images/edit.png" alt="edit icon">
+                    <img src="images/delete.png" alt="delete icon" class="delete-task-btn">
+                </div>
+            </div>
+
+
+`)
     }
 }
 
@@ -203,7 +214,7 @@ function renderComplete(array) {
     $('#task-complete-display').empty();
     for (let task of array) {
         $('#task-complete-display').append(`
-            <div class="task-container done-${task.done}">
+            <div class= "task-container done-${task.done}">
                 <div class = "task-header">
                     <div class="imp-and-name"> 
                         <span class = "importance badge rounded-pill ${badgeArray[task.importance]}">${task.importance}</span>
@@ -219,7 +230,7 @@ function renderComplete(array) {
                     <button data-done = "${task.done}" data-id = "${task.id}" class="btn btn-danger mark-done-btn">mark as not done</button> 
                     <button data-id = "${task.id}" class="btn btn-danger delete-task-btn">x</button>
                 </div> 
-            </div>
-        `)
+            </div >
+            `)
     }
 }

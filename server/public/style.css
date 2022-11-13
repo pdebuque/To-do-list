@@ -57,11 +57,25 @@ h1 {
 
 }
 
+
 .new-importance {
-    padding: 4px 18px;
-    background-color: #FFC107;
+    padding: 4px 0px;
+    width: 40px;
+    text-align: center;
     color: white;
     font-size: 24px;
+}
+
+.new-importance-1 {
+    background-color: #DC3545
+}
+
+.new-importance-2 {
+    background-color: #FFC107;
+}
+
+.new-importance-3 {
+    background-color: green;
 }
 
 .task-container-front a {
@@ -92,28 +106,33 @@ h1 {
     /* display: flex; */
     /* justify-content: space-between;
     align-items: flex-end; */
-    border-top: 1px solid rgb(223, 223, 223);
-    border-bottom: 1px solid rgb(223, 223, 223);
-    padding: 10px 20px 10px 12%;
-    background-color: white;
-
 }
 
 .task-notes-flex {
+    padding: 10px 20px 10px 12%;
     display: flex;
+    background-color: white;
+    border-top: 1px solid rgb(223, 223, 223);
+    border-bottom: 1px solid rgb(223, 223, 223);
 }
 
 .new-notes {
+    width: 90%;
     padding: 0 10% 0 0;
+    font-weight: 300;
 }
 
 .edit-btn {
     height: 30px;
     margin: 5px 0px;
+    opacity: 1;
 }
 
-.delete-btn {
-    height: 40px
+.delete-task-btn {
+    height: 25px;
+    margin-top: 7px;
+    margin-left: 4px;
+    opacity: 1;
 }
 
 /* -------------- unfinished -------------- */
