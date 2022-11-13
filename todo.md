@@ -47,6 +47,30 @@ time completed
 [] consolidate toggle done function for all cases
 
 ## style to-do
-[] make completed tasks smaller. focus should be on incomplete
+[x] make completed tasks smaller. focus should be on incomplete
 [] fiddle with fonts
 [] media queries to switch layouts
+[] spacing of headers
+[] spacing of new task field
+
+[x] fix spacing of importance numbers
+[x] conditional styling: colors on importance
+[x] fix spacing of dropdown info
+[] fix styles of toggle buttons on top (hate the blue)
+[] switch check-box to check mark
+
+## restore functionality - incomplete
+[x] arm delete task button
+[] arm done checkbox button
+[] create edit task functionality; arm button
+[] fix delete task function 
+
+## restore functionality - complete
+
+
+
+
+
+
+## misc
+[] clean up css classes
