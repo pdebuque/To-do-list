@@ -96,8 +96,8 @@
                         <div class="col-md-5"></div>
                         <div class="col-md-10">
                             <button id="submit-task-btn" type="submit" class="btn btn-primary">Submit</button>
-                            <button id="cancel-task-btn" type="submit" class="btn btn-secondary"
-                                data-bs-toggle="collapse" href="#inputs-container" aria-expanded="false"
+                            <button id="cancel-task-btn" class="btn btn-secondary" data-bs-toggle="collapse"
+                                href="#inputs-container" aria-expanded="false"
                                 aria-controls="collapseButton">Cancel</button>
 
                         </div>
@@ -107,44 +107,6 @@
 
                 </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-                <!-- <form>
-                        <h3>CREATE NEW TASK</h3>
-                        <div class="task-input">
-                            <label for="task-name-input">Task name</label>
-                            <input type="text" class="form-control" id="task-name-input" placeholder="Enter task name">
-                        </div>
-                        <div class="task-input dropdown">
-                            <label for="exampleFormControlSelect1">Importance</label>
-                            <select class="form-control" id="importance-input">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                            </select>
-
-                        </div>
-                        <div class="task-input">
-                            <label for="date-input">Due date</label>
-                            <input type="date" class="form-control" id="date-input" placeholder="Enter due date">
-                        </div>
-                        <div class="task-input">
-                            <label for="notes-input">Notes</label>
-                            <textarea class="form-control" id="notes-input" rows="3"
-                                placeholder="Enter any notes"></textarea>
-                        </div>
-                        <button id="submit-task-btn" type="submit" class="btn btn-primary">Submit</button>
-                    </form> -->
             </div>
             </div>
             <div id="task-display">
@@ -153,10 +115,10 @@
                     <div class="task-container-min">
                         <div class="task-container-front">
                             <span class="new-importance">2</span>
-                            <a class="btn" data-bs-toggle="collapse" href="#task-notes-1" role="button"
+                            <button class="btn" data-bs-toggle="collapse" href="#task-notes-1" role="button"
                                 aria-expanded="false" aria-controls="collapseButton">
                                 <img class="three-dots-icon" src="images/three dots.png" alt="three dots">
-                            </a>
+                            </button>
                             <span class="new-task-name">TASK NAME</span>
                         </div>
                         <div class="task-container-back">
@@ -186,29 +148,6 @@
             <div class="task-display-header">
                 <h2>COMPLETED</h2>
 
-
-
-
-                <!-- <div class="sort" id="sort-comp">sort by:
-                    <div class="btn-group" role="group" id="comp-param-sel">
-                        <input type="radio" value="importance" class="btn-check" name="comp-param" id="comp-imp"
-                            autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="comp-imp">Importance</label>
-
-                        <input type="radio" value="due_date" class=" btn-check" name="comp-param" id="comp-due"
-                            autocomplete="off">
-                        <label class="btn btn-outline-primary" for="comp-due">Due Date</label>
-                    </div>
-                    <div class="btn-group" role="group" id="comp-order-sel">
-                        <input type="radio" value="ASC" class="btn-check" name="comp-order" id="comp-asc"
-                            autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="comp-asc">˄</label>
-
-                        <input type="radio" value="DESC" class="btn-check" name="comp-order" id="comp-desc"
-                            autocomplete="off">
-                        <label class="btn btn-outline-primary" for="comp-desc">˅</label>
-                    </div>
-                </div> -->
             </div>
             <div id="task-complete-display">
 
@@ -216,10 +155,10 @@
                     <div class="task-comp-min">
                         <div class="task-comp-front">
                             <div class="grey"></div>
-                            <a class="btn" data-bs-toggle="collapse" href="#task-notes-n" role="button"
+                            <button class="btn" data-bs-toggle="collapse" href="#task-notes-n" role="button"
                                 aria-expanded="false" aria-controls="collapseButton">
                                 <img class="comp-three-dots-icon" src="images/three dots.png" alt="three dots">
-                            </a>
+                            </button>
                             <div class="task-comp-name">
                                 TASK NAME
                             </div>
