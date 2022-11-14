@@ -139,7 +139,7 @@ function sortIncomplete() {
     })
 }
 
-// function sortComplete() {
+// function sortComplete() { // no longer present on DOM
 //     // harvest from dom
 //     const param = $('#comp-param-sel input[name="comp-param"]:checked').val();
 //     const order = $('#comp-order-sel input[name="comp-order"]:checked').val();
@@ -160,11 +160,12 @@ function editTask() {
     const id = $(this).data('id');
     const updatedTask = {
         task_name: $(`#task-name-input-${id}`).val() || $(this).data('task_name'),
-        importance: $(`#task-importance-input-${id}`).val() || $(this).data('importance'),
+        importance: $(`#importance-input-${id}`).val() || $(this).data('importance'),
         due_date: $(`#date-input-${id}`).val() || $(this).data('due_date'),
         notes: $(`#notes-input-${id}`).val()
     };
 
+    console.log('new task data: ', updatedTask)
     $.ajax({
         type: 'PUT',
         url: `/tasks/edit/${id}`,
