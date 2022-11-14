@@ -162,7 +162,7 @@ function editTask() {
         task_name: $(`#task-name-input-${id}`).val() || $(this).data('task_name'),
         importance: $(`#task-importance-input-${id}`).val() || $(this).data('importance'),
         due_date: $(`#date-input-${id}`).val() || $(this).data('due_date'),
-        notes: $(`#notes-input-${id}`).val() || $(this).data('notes')
+        notes: $(`#notes-input-${id}`).val()
     };
 
     $.ajax({
@@ -229,14 +229,14 @@ function renderIncomplete(array) {
             <div class="collapse" id="edit-inputs-${task.id}">
             <div class="card card-body">
             <form id="edit-inputs-form-${task.id} class="row g-3" novalidate>
-                <div class="col-md-7">
-                    <label for="task-name-input-${task.id}" class="form-label">Task Name</label>
-                    <input type="text" class="form-control" id="task-name-input-${task.id}" placeholder="if empty, ${task.task_name}">
+                <div class="col-lg-6">
+                    <label for="task-name-input-${task.id}" class="form-label">Edit task name</label>
+                    <input type="text" class="form-control" id="task-name-input-${task.id}" placeholder="if empty, '${task.task_name}'">
                 </div>
                 <div class="invalid-feedback">
                     Please enter a task name.
                 </div>
-                <div class="col-md-2">
+                <div class="col-lg-2">
                     <div class="task-input dropdown">
                         <label for="importance-input-${task.id}" class="form-label">Importance</label>
                         <select class="form-control" id="importance-input-${task.id}" required>
@@ -246,17 +246,17 @@ function renderIncomplete(array) {
                         </select>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <label for="date-input-${task.id}" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="date-input-${task.id}" placeholder="if empty, ${task.due_date_pretty}>
+                    <input type="date" class="form-control" id="date-input-${task.id}">
                 </div>
-                <div class="col-md-7">
+                <div class="col-lg-7">
                     <label for="notes-input-${task.id}" class="form-label">Notes</label>
                     <textarea class="form-control" id="notes-input-${task.id}" rows="3"
-                        placeholder="Enter any notes"></textarea>
+                        placeholder="leave empty to delete notes"></textarea>
                 </div>
-                <div class="col-md-5"></div>
-                <div class="col-md-10">
+                <div class="col-lg-5"></div>
+                <div class="col-lg-10">
                     <button id="submit-task-btn-${task.id}" type="submit" class="btn btn-primary submit-edit-btn" data-id="${task.id}" data-task_name="${task.task_name}" data-importance="${task.importance}" data-due_date="${task.due_date}" data-notes = "${task.notes}">Submit</button>
                     <button id="cancel-task-btn-${task.id}" type="submit" class="btn btn-secondary"
                         data-bs-toggle="collapse" href="#edit-inputs-${task.id}" aria-expanded="false"
