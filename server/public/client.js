@@ -228,42 +228,41 @@ function renderIncomplete(array) {
             </div>
             <div class="collapse" id="edit-inputs-${task.id}">
             <div class="card card-body">
-            <form id="edit-inputs-form-${task.id} class="row g-3" novalidate>
-                <div class="col-lg-6">
-                    <label for="task-name-input-${task.id}" class="form-label">Edit task name</label>
-                    <input type="text" class="form-control" id="task-name-input-${task.id}" placeholder="if empty, '${task.task_name}'">
-                </div>
-                <div class="invalid-feedback">
-                    Please enter a task name.
-                </div>
-                <div class="col-lg-2">
-                    <div class="task-input dropdown">
-                        <label for="importance-input-${task.id}" class="form-label">Importance</label>
-                        <select class="form-control" id="importance-input-${task.id}" required>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+                <form id="edit-inputs-form-${task.id} class= "row g-3" novalidate>
+                    <div class="col">
+                        <label for="task-name-input-${task.id}" class="form-label">Edit task name</label>
+                        <input type="text" class="form-control" id="task-name-input-${task.id}" placeholder="if empty, '${task.task_name}'">
                     </div>
-                </div>
-                <div class="col-lg-3">
-                    <label for="date-input-${task.id}" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="date-input-${task.id}">
-                </div>
-                <div class="col-lg-7">
-                    <label for="notes-input-${task.id}" class="form-label">Notes</label>
-                    <textarea class="form-control" id="notes-input-${task.id}" rows="3"
-                        placeholder="leave empty to delete notes"></textarea>
-                </div>
-                <div class="col-lg-5"></div>
-                <div class="col-lg-10">
-                    <button id="submit-task-btn-${task.id}" type="submit" class="btn btn-primary submit-edit-btn" data-id="${task.id}" data-task_name="${task.task_name}" data-importance="${task.importance}" data-due_date="${task.due_date}" data-notes = "${task.notes}">Submit</button>
-                    <button id="cancel-task-btn-${task.id}" type="submit" class="btn btn-secondary"
-                        data-bs-toggle="collapse" href="#edit-inputs-${task.id}" aria-expanded="false"
-                        aria-controls="collapseButton">Cancel</button>
+                    <div class="invalid-feedback">
+                        Please enter a task name.
+                    </div>
+                    <div class="col">
+                        <div class="task-input dropdown">
+                            <label for="importance-input-${task.id}" class="form-label">Importance</label>
+                            <select class="form-control" id="importance-input-${task.id}" required>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <label for="date-input-${task.id}" class="form-label">Date</label>
+                        <input type="date" class="form-control" id="date-input-${task.id}">
+                    </div>
+                    <div class="col-lg-7">
+                        <label for="notes-input-${task.id}" class="form-label">Notes</label>
+                        <textarea class="form-control" id="notes-input-${task.id}" rows="3"
+                            placeholder="leave empty to delete notes"></textarea>
+                    </div>
+                    <div class="col-lg-10">
+                        <button id="submit-task-btn-${task.id}" type="submit" class="btn btn-primary submit-edit-btn" data-id="${task.id}" data-task_name="${task.task_name}" data-importance="${task.importance}" data-due_date="${task.due_date}" data-notes = "${task.notes}">Submit</button>
+                        <button id="cancel-task-btn-${task.id}" type="submit" class="btn btn-secondary"
+                            data-bs-toggle="collapse" href="#edit-inputs-${task.id}" aria-expanded="false"
+                            aria-controls="collapseButton">Cancel</button>
 
-                </div>
-        </div>
+                    </div>
+                </form>
             </div>
         </div>
 
