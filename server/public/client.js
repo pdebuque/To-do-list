@@ -8,6 +8,7 @@ function onReady() {
 function addClickListeners() {
     $('#submit-task-btn').on('click', addTask); // submit tasks to task list
     $('#all-content').on('click', '.mark-done-box', toggleComplete); // when user clicks the mark done button in incomplete tasks, fire a put request to update its date_completed in db
+    $('#all-content').on('click', '.submit-edit-btn', editTask)
     $('#all-content').on('click', '.comp-delete-btn', deleteTask)
     $('#all-content').on('click', '.comp-toggle-btn', toggleComplete)
     $('#all-content').on('click', '.delete-task-btn', deleteTask);
@@ -154,6 +155,27 @@ function sortComplete() {
     })
 }
 
+function editTask() {
+    console.log('in editTask()')
+    const id = $(this).data('id');
+    const updatedTask = {
+        task_name: $(`#task-name-input-${id}`).val() || $(this).data('task_name'),
+        importance: $(`#task-importance-input-${id}`).val() || $(this).data('importance'),
+        due_date: $(`#date-input-${id}`).val() || $(this).data('due_date'),
+        notes: $(`#notes-input-${id}`).val() || $(this).data('notes')
+    };
+
+    $.ajax({
+        type: 'PUT',
+        url: `/tasks/edit/${id}`,
+        data: updatedTask
+    }).then(() => {
+        getTasks()
+    }).catch((err) => {
+        console.log('could not update task', err)
+    })
+}
+
 
 // ------------------ render ------------------------
 
@@ -200,9 +222,48 @@ function renderIncomplete(array) {
                     <div class="task-notes">
                         ${task.notes ? task.notes : '<i> no notes! </i>'}
                     </div>
-                    <img class="edit-btn" src="images/edit.png" alt="edit icon">
+                    <img class="edit-btn" data-bs-toggle="collapse" data-id="${task.id}" data-task_name="${task.task_name}" data-due_date="${task.due_date}" data-notes = "${task.notes}" href="#edit-inputs-${task.id}" src="images/edit.png" alt="edit icon">
                     <img src="images/delete.png" data-id="${task.id}" data-name="${task.task_name}" alt="delete icon" class="delete-task-btn">
                 </div>
+            </div>
+            <div class="collapse" id="edit-inputs-${task.id}">
+            <div class="card card-body">
+            <form id="edit-inputs-form-${task.id} class="row g-3" novalidate>
+                <div class="col-md-7">
+                    <label for="task-name-input-${task.id}" class="form-label">Task Name</label>
+                    <input type="text" class="form-control" id="task-name-input-${task.id}" placeholder="if empty, ${task.task_name}">
+                </div>
+                <div class="invalid-feedback">
+                    Please enter a task name.
+                </div>
+                <div class="col-md-2">
+                    <div class="task-input dropdown">
+                        <label for="importance-input-${task.id}" class="form-label">Importance</label>
+                        <select class="form-control" id="importance-input-${task.id}" required>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="date-input-${task.id}" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="date-input-${task.id}" placeholder="if empty, ${task.due_date_pretty}>
+                </div>
+                <div class="col-md-7">
+                    <label for="notes-input-${task.id}" class="form-label">Notes</label>
+                    <textarea class="form-control" id="notes-input-${task.id}" rows="3"
+                        placeholder="Enter any notes"></textarea>
+                </div>
+                <div class="col-md-5"></div>
+                <div class="col-md-10">
+                    <button id="submit-task-btn-${task.id}" type="submit" class="btn btn-primary submit-edit-btn" data-id="${task.id}" data-task_name="${task.task_name}" data-importance="${task.importance}" data-due_date="${task.due_date}" data-notes = "${task.notes}">Submit</button>
+                    <button id="cancel-task-btn-${task.id}" type="submit" class="btn btn-secondary"
+                        data-bs-toggle="collapse" href="#edit-inputs-${task.id}" aria-expanded="false"
+                        aria-controls="collapseButton">Cancel</button>
+
+                </div>
+        </div>
             </div>
         </div>
 

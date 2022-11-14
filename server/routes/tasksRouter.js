@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
                         id, 
                         task_name, 
                         importance, 
+                        due_date,
                         to_char(due_date, 'Mon DD, YYYY') AS due_date_pretty, 
                         to_char(date_completed, 'Mon DD, YYYY') AS date_completed_pretty, 
                         done, 
@@ -31,7 +32,18 @@ router.get('/', (req, res) => {
 // get all unfinished task rows sorted by given parameter
 router.get('/incomplete/:param&:order', (req, res) => {
     console.log('received sort unfinished request', req.params);
-    const queryText = `SELECT id, task_name, importance, to_char(due_date, 'Mon DD, YYYY') AS due_date_pretty, done, to_char(date_completed, 'Mon DD YYYY') AS date_completed_pretty, notes FROM tasks WHERE done=false ORDER BY ${req.params.param} ${req.params.order};`
+    const queryText = `SELECT 
+                        id, 
+                        task_name, 
+                        importance, 
+                        due_date,
+                        to_char(due_date, 'Mon DD, YYYY') AS due_date_pretty, 
+                        done, 
+                        to_char(date_completed, 'Mon DD YYYY') AS date_completed_pretty, 
+                        notes 
+                        FROM tasks 
+                        WHERE done=false 
+                        ORDER BY ${req.params.param} ${req.params.order};`
     pool.query(queryText)
         .then((result) => {
             console.log('got incomplete tasks');
@@ -117,6 +129,32 @@ router.put('/refresh/:id', (req, res) => {
             res.sendStatus(500)
         })
 })
+
+// edit task
+
+
+router.put('/edit/:id', (req, res) => {
+    console.log('editting a task:', req.body);
+    const updatedTask = req.body
+    const queryText = `UPDATE tasks
+                        SET 
+                        task_name = $1,
+                        importance = $2,
+                        due_date = $3,
+                        notes = $4
+                        WHERE id = $5
+                        `
+    pool.query(queryText, [updatedTask.task_name, updatedTask.importance, updatedTask.due_date, updatedTask.notes, req.params.id])
+        .then(() => {
+            console.log('successfully edited task');
+            res.sendStatus(202)
+        })
+        .catch((err) => {
+            console.log('could not edit task', err);
+            res.sendStatus(500);
+        })
+})
+
 
 // DELETE
 // delete a task
