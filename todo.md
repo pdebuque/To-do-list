@@ -8,23 +8,20 @@ create a task
 [x] front-end show all results
 [x] PUT: update done
 [x] DELETE: delete task
-[] styling: update when task done
-[] styling: style the display
-    [] parse date info
-    [] fonts
+[x] styling: update when task done
+[x] styling: style the display
+    [x] parse date info
+    [x] fonts
 
 [] styling: update the header
-
-[] sort incoming data by importance
-
-
-[] data validation
+[x] sort incoming data by importance
+[x] data validation
 
 
 STRETCH
-[] tasks go into different columns for to-do and complete
-    [] to-do sorted by importance
-    [] tasks can be moved to and from using toggle done
+[x] tasks go into different columns for to-do and complete
+    [x] to-do sorted by importance
+    [x] tasks can be moved to and from using toggle done
 
 
 [x] sort by importance
@@ -48,10 +45,10 @@ time completed
 
 ## style to-do
 [x] make completed tasks smaller. focus should be on incomplete
-[] fiddle with fonts
-[] media queries to switch layouts
-[] spacing of headers
-[] spacing of new task field
+[x] fiddle with fonts
+[x] media queries to switch layouts
+[x] spacing of headers
+[x] spacing of new task field
 
 [x] fix spacing of importance numbers
 [x] conditional styling: colors on importance
@@ -61,9 +58,9 @@ time completed
 
 ## restore functionality - incomplete
 [x] arm delete task button
-[] arm done checkbox button
+[x] arm done checkbox button
 [] create edit task functionality; arm button
-[] fix delete task function 
+[x] fix delete task function 
 
 ## restore functionality - complete
 
@@ -73,4 +70,4 @@ time completed
 
 
 ## misc
-[] clean up css classes
+[x] clean up css classes

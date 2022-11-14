@@ -198,10 +198,10 @@ function renderIncomplete(array) {
             <div class="collapse" id="task-notes-${task.id}">
                 <div class="task-notes-flex">
                     <div class="task-notes">
-                        ${task.notes}
+                        ${task.notes ? task.notes : '<i> no notes! </i>'}
                     </div>
                     <img class="edit-btn" src="images/edit.png" alt="edit icon">
-                    <img src="images/delete.png" alt="delete icon" class="delete-task-btn">
+                    <img src="images/delete.png" data-id="${task.id}" data-name="${task.task_name}" alt="delete icon" class="delete-task-btn">
                 </div>
             </div>
         </div>
@@ -229,7 +229,7 @@ function renderComplete(array) {
                 </div>
                 <div class="comp-back">
                     <img src="images/incomplete.png" alt="incomplete icon" data-done = "${task.done}" data-id="${task.id}" class="comp-toggle-btn">
-                    <img src="images/delete.png" alt="delete icon"  data-id = "${task.id}" class="comp-delete-btn">
+                    <img src="images/delete.png" alt="delete icon" data-name="${task.task_name}" data-id = "${task.id}" class="comp-delete-btn">
                 </div>
             </div>
             <div class="collapse" id="comp-notes-${task.id}">

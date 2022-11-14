@@ -26,9 +26,9 @@
 <body>
     <h1>Paolo's Full-Stack To-Do List</h1>
     <main id="all-content" class="container row">
-        <section class="col-md-1" id="spacer">
+        <section class="col-lg-1" id="spacer">
         </section>
-        <section class="col-md-8" id="task-display-container">
+        <section class="col-lg-8" id="task-display-container">
 
             <div class="task-display-header">
                 <div class="title-and-add">
@@ -66,51 +66,46 @@
             </div>
             <div class="collapse" id="inputs-container">
                 <div class="card card-body">
-                    <form class="row g-3">
-                        <div class="col-md-6">
-                            <label for="inputEmail4" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4">
+                    <form class="row g-3" novalidate>
+                        <div class="col-md-7">
+                            <label for="task-name-input" class="form-label">Task Name</label>
+                            <input type="text" class="form-control" id="task-name-input" required>
                         </div>
-                        <div class="col-md-6">
-                            <label for="inputPassword4" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="inputPassword4">
-                        </div>
-                        <div class="col-12">
-                            <label for="inputAddress" class="form-label">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                        </div>
-                        <div class="col-12">
-                            <label for="inputAddress2" class="form-label">Address 2</label>
-                            <input type="text" class="form-control" id="inputAddress2"
-                                placeholder="Apartment, studio, or floor">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputCity" class="form-label">City</label>
-                            <input type="text" class="form-control" id="inputCity">
-                        </div>
-                        <div class="col-md-4">
-                            <label for="inputState" class="form-label">State</label>
-                            <select id="inputState" class="form-select">
-                                <option selected>Choose...</option>
-                                <option>...</option>
-                            </select>
+                        <div class="invalid-feedback">
+                            Please enter a task name.
                         </div>
                         <div class="col-md-2">
-                            <label for="inputZip" class="form-label">Zip</label>
-                            <input type="text" class="form-control" id="inputZip">
-                        </div>
-                        <div class="col-12">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                </label>
+                            <div class="task-input dropdown">
+                                <label for="importance-input" class="form-label">Importance</label>
+                                <select class="form-control" id="importance-input" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                         </div>
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-primary">Sign in</button>
+                        <div class="col-md-3">
+                            <label for="date-input" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="date-input" required>
                         </div>
-                    </form>
+                        <div class="col-md-7">
+                            <label for="notes-input" class="form-label">Notes</label>
+                            <textarea class="form-control" id="notes-input" rows="3"
+                                placeholder="Enter any notes"></textarea>
+                        </div>
+                        <div class="col-md-5"></div>
+                        <div class="col-md-10">
+                            <button id="submit-task-btn" type="submit" class="btn btn-primary">Submit</button>
+                            <button id="cancel-task-btn" type="submit" class="btn btn-secondary"
+                                data-bs-toggle="collapse" href="#inputs-container" aria-expanded="false"
+                                aria-controls="collapseButton">Cancel</button>
+
+                        </div>
+                </div>
+
+
+
+                </form>
 
 
 
@@ -124,7 +119,7 @@
 
 
 
-                    <!-- <form>
+                <!-- <form>
                         <h3>CREATE NEW TASK</h3>
                         <div class="task-input">
                             <label for="task-name-input">Task name</label>
@@ -150,7 +145,7 @@
                         </div>
                         <button id="submit-task-btn" type="submit" class="btn btn-primary">Submit</button>
                     </form> -->
-                </div>
+            </div>
             </div>
             <div id="task-display">
 
@@ -187,7 +182,7 @@
 
                 </div>
         </section>
-        <section class="col-md-3" id="tasks-complete-container">
+        <section class="col-lg-3" id="tasks-complete-container">
             <div class="task-display-header">
                 <h2>COMPLETED</h2>
 

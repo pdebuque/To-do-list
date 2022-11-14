@@ -21,6 +21,45 @@ h1 {
     /* height: 500px; */
 }
 
+/* --------- adjust bootstrap button styles -------------- */
+.btn,
+.btn-group {
+    /* padding: 14px 24px; */
+    border: 0 none;
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+    outline: 0 none;
+}
+
+.btn-primary {
+    background: #4b5dfd;
+    color: #ffffff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open.dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
+
+.btn-primary:active,
+.btn-primary.active {
+    background: #007299;
+    box-shadow: none;
+}
+
+
+
 /* -------------- inputs ------------------- */
 #task-input-container {
     padding: 20px;
@@ -35,8 +74,6 @@ h1 {
 
 #spacer {
     padding: 20px 20px 20px 50px;
-    background-color: rgb(218, 237, 252);
-    background-clip: content-box;
 }
 
 
@@ -84,6 +121,7 @@ h1 {
 
 .task-container-front {
     display: flex;
+    align-items: center;
     margin: 0;
     padding: 0;
 
@@ -151,6 +189,7 @@ h1 {
 
 .task-notes-flex {
     padding: 10px 20px 10px 12%;
+    align-items: center;
     display: flex;
     background-color: white;
     border-top: 1px solid rgb(223, 223, 223);
@@ -178,9 +217,8 @@ h1 {
 }
 
 .delete-task-btn {
+    margin-left: 6px;
     height: 25px;
-    margin-top: 7px;
-    margin-left: 4px;
     opacity: .5;
 }
 
@@ -280,7 +318,8 @@ h1 {
     width: 90%;
     padding: 0;
     font-weight: 200;
-    font-size: 16px
+    font-size: 16px;
+    font-style: italic;
 }
 
 

@@ -62,4 +62,4 @@ For each of your stretch goals, you will be practicing git branching. Please ref
     
 - `feature-time-completed` 
 
-    - [ ]  Add the ability to record when a task was completed. Show the completed date on the frontend in a pretty format.
+    - [x]  Add the ability to record when a task was completed. Show the completed date on the frontend in a pretty format.
