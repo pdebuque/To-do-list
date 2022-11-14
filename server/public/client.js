@@ -13,7 +13,7 @@ function addClickListeners() {
     $('#all-content').on('click', '.comp-toggle-btn', toggleComplete)
     $('#all-content').on('click', '.delete-task-btn', deleteTask);
     $('#sort-incomp').on('click', '.btn-group', sortIncomplete);
-    $('#sort-comp').on('click', '.btn-group', sortComplete);
+    // $('#sort-comp').on('click', '.btn-group', sortComplete); // no longer present on DOM
 }
 
 function addTask() {
@@ -139,21 +139,21 @@ function sortIncomplete() {
     })
 }
 
-function sortComplete() {
-    // harvest from dom
-    const param = $('#comp-param-sel input[name="comp-param"]:checked').val();
-    const order = $('#comp-order-sel input[name="comp-order"]:checked').val();
+// function sortComplete() {
+//     // harvest from dom
+//     const param = $('#comp-param-sel input[name="comp-param"]:checked').val();
+//     const order = $('#comp-order-sel input[name="comp-order"]:checked').val();
 
-    $.ajax({
-        type: 'GET',
-        url: `/tasks/complete/${param}&${order}`
-    }).then((res) => {
-        console.log('complete tasks received', res);
-        renderComplete(res);
-    }).catch((err) => {
-        console.log('could not receive complete tasks', err)
-    })
-}
+//     $.ajax({
+//         type: 'GET',
+//         url: `/tasks/complete/${param}&${order}`
+//     }).then((res) => {
+//         console.log('complete tasks received', res);
+//         renderComplete(res);
+//     }).catch((err) => {
+//         console.log('could not receive complete tasks', err)
+//     })
+// }
 
 function editTask() {
     console.log('in editTask()')
@@ -257,7 +257,7 @@ function renderIncomplete(array) {
                     </div>
                     <div class="col-lg-10">
                         <button id="submit-task-btn-${task.id}" type="submit" class="btn btn-primary submit-edit-btn" data-id="${task.id}" data-task_name="${task.task_name}" data-importance="${task.importance}" data-due_date="${task.due_date}" data-notes = "${task.notes}">Submit</button>
-                        <button id="cancel-task-btn-${task.id}" type="submit" class="btn btn-secondary"
+                        <button id="cancel-task-btn-${task.id}" class="btn btn-secondary"
                             data-bs-toggle="collapse" href="#edit-inputs-${task.id}" aria-expanded="false"
                             aria-controls="collapseButton">Cancel</button>
 

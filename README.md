@@ -32,8 +32,7 @@ You need:
 - Create a task by pressing the + button in the TASKS header. Tasks must have a name, due date, and importance (1 is high)
 - Sort uncompleted tasks by importance or due date, ascending or descending
 - Mark tasks completed with the check icon on the right. Completed tasks are archived in the right sidebar, and can be restored with the back arrow or deleted with the trash icon.
-- Notes and the option to delete uncompleted tasks can be accessed with the three dot icon
-    - edit icon is not yet functional
+- Notes and options to delete or edit uncompleted tasks can be accessed with the three dot icon
 
 ## Acknowledgment
 
